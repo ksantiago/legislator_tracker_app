@@ -1,0 +1,13 @@
+<h1>Bills</h1>
+
+<ul>
+<%= link_to('Add bill', '/bills/new') %>
+</ul>
+
+<div>
+  <% @bills.each do |bill| %>
+    <div><a href="/bills/<%= bill.id %>"><%= bill.name %></a></div>
+  <% end %>
+</div>
+
+

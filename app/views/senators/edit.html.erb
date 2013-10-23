@@ -1,0 +1,11 @@
+<h1>Edit <%= @senator.name %></h1>
+
+<div>
+<p><%= form_for(@senator) do |f| %>
+
+  <p><%= f.label :name %>
+  <%= f.text_field :name %></p>
+
+  <%= f.submit "Submit" %>
+
+<% end %>

@@ -1,0 +1,9 @@
+<h1>Add state</h1>
+
+<%= form_for(@state) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit "Add" %>
+<% end %>
+
+<!-- params[:state] => {:state_name => 'new jersey'} -->

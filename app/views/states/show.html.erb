@@ -1,0 +1,21 @@
+<nav>
+<a href="/states">STATES</a> |
+</nav>
+
+<h1><%= @state.name %></h1>
+
+<div><button>
+  <%= link_to "Edit State", "/states/#{@state.id}/edit" %></button>
+</div>
+
+<div>
+  <%= form_tag "/states/#{@state.id}", method: :delete do %>
+  <%= submit_tag 'Delete state' %>
+  <% end %>
+</div>
+
+
+<div>Created: <%= @state.created_at %></div>
+<div>Updated: <%= @state.updated_at %></div>
+
+

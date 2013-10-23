@@ -1,0 +1,11 @@
+<h1>Senate</h1>
+
+<ul>
+<%= link_to('Add senator', '/senators/new') %>
+</ul>
+
+<div>
+  <% @senators.each do |senator| %>
+  <div><a href="/senators/<%= senator.id %>"><%= senator.name %></a></div>
+  <% end %>
+</div>

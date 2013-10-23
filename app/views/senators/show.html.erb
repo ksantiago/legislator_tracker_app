@@ -1,0 +1,19 @@
+<nav>
+<a href="/states">STATES</a> |
+</nav>
+
+<h1><%= @senator.name %></h1>
+
+<div><button>
+  <%= link_to "Edit Senator", "/senators/#{@senator.id}/edit" %></button>
+</div>
+
+<div>
+  <%= form_tag "/senators/#{@senator.id}", method: :delete do %>
+  <%= submit_tag 'Delete senator' %>
+  <% end %>
+</div>
+
+
+
+

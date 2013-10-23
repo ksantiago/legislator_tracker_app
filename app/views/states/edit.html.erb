@@ -1,0 +1,11 @@
+<h1>Edit State</h1>
+
+<div>
+<p><%= form_for(@state) do |f| %>
+
+  <p><%= f.label :name %>
+  <%= f.text_field :name %></p>
+
+  <%= f.submit "Submit" %>
+
+<% end %>

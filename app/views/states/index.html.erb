@@ -1,0 +1,12 @@
+<h1>States</h1>
+
+<ul>
+<%= link_to('Add state', '/states/new') %>
+</ul>
+
+<div>
+  <% @states.each do |state| %>
+    <div><a href="/states/<%= state.id %>"><%= state.name %></a></div>
+  <% end %>
+</div>
+
