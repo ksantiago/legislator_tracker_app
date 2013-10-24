@@ -2,6 +2,13 @@ class SenatorsController < ApplicationController
 
   def index
     @senators = Senator.all
+    # fixed //store api keys in environmental variables. also, learn what that means.
+
+    url = "http://congress.api.sunlightfoundation.com"
+    method="/legislators?per_page=all"
+
+    @results = HTTParty.get(url+method+"&apikey=#{ENV['sunlight_key']}")["results"].select { |result| result['title'] == "Sen" }
+
   end
 
   def new
@@ -9,17 +16,26 @@ class SenatorsController < ApplicationController
   end
 
   def create
+    # fixed // optimize: change this to Senator.create(params[:sentator])
     senator = params[:senator]
-    name = senator[:name]
-    Senator.create(name: name)
+    Senator.create(senator)
 
     redirect_to('/senators')
   end
 
   def show
-    id = params[:id]
-    @senator = Senator.find(id)
-    @senator.save
+    @id = params[:id]
+    url = "http://congress.api.sunlightfoundation.com"
+    method="/legislators?per_page=all"
+    @results = HTTParty.get(url+method+"&apikey=#{ENV['sunlight_key']}")["results"].select { |result| result['bioguide_id'] == "#{@id}" }
+
+    committee="/committees?member_ids=#{@id}"
+    @committees = HTTParty.get(url+committee+"&apikey=#{ENV['sunlight_key']}")["results"]
+
+    words_url = "http://capitolwords.org/api/1"
+    words = "/phrases.json?entity_type=legislator&entity_value=#{@id}"
+    @phrases = HTTParty.get(url+words+"&apikey=#{ENV['sunlight_key']}")["results"]
+
   end
 
   def edit
@@ -29,17 +45,17 @@ class SenatorsController < ApplicationController
 
   def update
     id = params[:id]
-    senator = params[:senator]
+    senator = Senator.find(id)
     name = senator[:name]
 
-    edited_senator = Senator.update(id, name: name)
-    redirect_to("/senators/#{id}")
+    senator.update_attributes(params[:senator])
+    redirect_to(senator)
   end
 
   def destroy
     id = params[:id]
-    @senator = Senator.find(id)
-    @senator.destroy
+    senator = Senator.find(id)
+    senator.destroy
     redirect_to('/senators')
   end
 

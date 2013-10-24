@@ -1,11 +1,18 @@
-<h1>Senate</h1>
+<div class="container">
+  <div class="title">
+    <h1>Senate</h1>
+  </div>
+  <div class="list">
+    <ul>
+      <% @results.each do |result| %>
+      <a href="/senators/<%= result["bioguide_id"] %>">
+        <li>
+          <%= result["title"] %>. <%= result["first_name"] %> <%= result["last_name"] %>, <%= result["state_name"] %><br>
+        </li>
+      </a>
+      <% end %>
 
-<ul>
-<%= link_to('Add senator', '/senators/new') %>
-</ul>
+    </ul>
+  </div>
 
-<div>
-  <% @senators.each do |senator| %>
-  <div><a href="/senators/<%= senator.id %>"><%= senator.name %></a></div>
-  <% end %>
 </div>

@@ -15,7 +15,13 @@
 </div>
 
 
-<div>Created: <%= @state.created_at %></div>
-<div>Updated: <%= @state.updated_at %></div>
-
-
+<h3>U.S. legislators for the state of <%= @state.name %></h3>
+<ul>
+  <% @results.each do |result| %>
+  <li>
+    <a href="/senators/<%= result['bioguide_id'] %>">
+    <%= result["title"] %>. <%= result["first_name"] %> <%= result["last_name"] %> (<%= result["party"] %>)
+    </a>
+  </li>
+  <% end %>
+</ul>

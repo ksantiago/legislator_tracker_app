@@ -1,17 +1,6 @@
-<nav>
-<a href="/states">STATES</a> | <a href="/senators">SENATORS</a> | <a href="/bills">BILLS</a>
-</nav>
+<h1>Active bills, in order of activity</h1>
 
-<h1><%= @bill.name %></h1>
-
-<div><button>
-  <%= link_to "Edit Bill", "/bills/#{@bill.id}/edit" %></button>
-</div>
-
-<div>
-  <%= form_tag "/bills/#{@bill.id}", method: :delete do %>
-  <%= submit_tag 'Delete bill' %>
-  <% end %>
-</div>
-
+<% @results.each do |result| %>
+<%= result["short_title"] %> - <%= result["chamber"] %>
+<% end %>
 

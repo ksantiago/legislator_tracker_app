@@ -9,17 +9,16 @@ class BillsController < ApplicationController
   end
 
   def create
-
     bill = params[:bill]
-    name = bill[:name]
     Bill.create(bill)
 
     redirect_to('/bills')
   end
 
   def show
-    id = params[:id]
-    @bill = Bill.find(id)
+    url = "http://congress.api.sunlightfoundation.com"
+    method="/bills?history.active=true&order=last_action_at"
+    @results = HTTParty.get(url+method+"&apikey=#{ENV['sunlight_key']}")["results"]
   end
 
   def edit
@@ -28,17 +27,18 @@ class BillsController < ApplicationController
   end
 
   def update
+    # fixed // fixme: use proper update_attributes
     id = params[:id]
-    bill = params[:bill]
+    bill = Bill.find(id)
 
-    edited_bill = Bill.update(id, bill)
-    redirect_to("/bills/#{id}")
+    bill.update_attributes(params[:bill])
+    redirect_to(bill)
   end
 
   def destroy
     id = params[:id]
-    @bill = Bill.find(id)
-    @bill.destroy
+    bill = Bill.find(id)
+    bill.destroy
     redirect_to("/bills")
   end
 

@@ -11,7 +11,6 @@ class StatesController < ApplicationController
   def create
     state = params[:state] #=> {:state_name => "new jersey"}
     # state1 = State.create(:state_name => "new jersey")
-    name = state[:name]
     State.create(state)
 
     redirect_to('/states')
@@ -20,7 +19,12 @@ class StatesController < ApplicationController
   def show
     id = params[:id]
     @state = State.find(id)
-    @state.save
+    name = @state.name
+
+    url = "http://congress.api.sunlightfoundation.com"
+    method="/legislators?per_page=all"
+    @results = HTTParty.get(url+method+"&apikey=#{ENV['sunlight_key']}")["results"].select { |result| result['state_name'] == "#{@state.name}"}
+
   end
 
   def edit
@@ -30,18 +34,18 @@ class StatesController < ApplicationController
   end
 
   def update
+    #/states/:id
     id = params[:id]
-    state = params[:state]
-    name = state[:name]
-
-    edited_state = State.update(id, state)
-    redirect_to("/states/#{id}")
+    state = State.find(id)
+    # params = { :name => "new jersey" }
+    state.update_attributes(params[:state])
+    redirect_to(state)
   end
 
   def destroy
     id = params[:id]
-    @state = State.find(id)
-    @state.destroy
+    state = State.find(id)
+    state.destroy
     redirect_to('/states')
   end
 

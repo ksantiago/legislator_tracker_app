@@ -3,12 +3,18 @@
 <head>
   <title>CongressTracker</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "normalize", :media => "all" %>
+  <%= stylesheet_link_tag    "style", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+
+<nav>
+  <a href="/states">STATES</a> | <a href="/senators">SENATE</a>
+</nav> | <a href="/representatives">HOUSE</a> | <a href="/bills">BILLS</a> | <a href="/">HOME</a>
 
 <%= yield %>
+
 
 </body>
 </html>

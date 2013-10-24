@@ -14,7 +14,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.where(id: session[:user_id]).first
+    if @user.nil?
+      redirect_to(login_path)
+    end
+
   end
 
 end

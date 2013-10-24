@@ -1,0 +1,50 @@
+
+
+body {
+  line_height: 1.62;
+  font-family: Helvetica;
+}
+
+body h1 {
+  color: #00000;
+  font-family: georgia;
+}
+
+li {
+  margin-bottom: 10px;
+
+}
+
+.container {
+  margin-left: 20px;
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 1.62;
+  font-family: helvetica;
+}
+
+.title {
+  border-bottom: 1px solid #A1A1A1;
+  width: 100%;
+}
+
+.title h1 {
+  margin-bottom: 0px;
+}
+
+.list {
+  margin-top: 20px;
+}
+
+
+.home {
+  width: 960px;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.home_buttons {
+  width: 960px;
+  text-align: center;
+}
+
