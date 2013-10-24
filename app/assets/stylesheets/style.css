@@ -13,20 +13,19 @@ li {
 
 }
 
-/* SIGNUP */
-
 .container {
   margin-left: 50px;
   margin-top: 20px;
   font-size: 25px;
   line-height: 1.62;
   font-family: helvetica;
-  border: 1px solid #428BCA;
 }
 
 .title {
-  border-bottom: 1px solid #A1A1A1;
   width: 100%;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+  margin-bottom: 60px;
 }
 
 .title h1 {

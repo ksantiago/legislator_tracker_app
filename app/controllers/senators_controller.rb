@@ -37,9 +37,7 @@ class SenatorsController < ApplicationController
     @phrases = HTTParty.get(words_url+words+"&apikey=#{ENV['sunlight_key']}")
 
 
-    if @phrases.any?
-      @display_capitol_words = "Capitol Words"
-    end
+
   end
 
   def edit

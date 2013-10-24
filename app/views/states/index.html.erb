@@ -1,14 +1,16 @@
-<div class="state_head"><h1>States</h1></div>
+<div class="container">
 
-<div>
-  <%= form_tag("/states/new", method: :get) do %>
-  <%= submit_tag 'Add state' %>
-  <% end %>
-</div>
+  <div class="title"><h1>Track legislators by state</h1></div>
 
+  <div>
+    <%= form_tag("/states/new", method: :get) do %>
+    <%= submit_tag 'Add' %>
+    <% end %>
+  </div>
 
-<div>
-  <% @states.each do |state| %>
-    <div><a href="/states/<%= state.id %>"><%= state.name %></a></div>
-  <% end %>
+  <div>
+    <% @states.each do |state| %>
+      <div><a href="/states/<%= state.id %>"><%= state.name %></a></div>
+    <% end %>
+  </div>
 </div>

@@ -1,7 +1,14 @@
 <div class="legis_container">
 
   <h2><%= @results.first["title"] %>. <%= @results.first["first_name"] %> <%= @results.first["last_name"] %></h2>
-  <h5><%= @results.first["state_name"] %></h5>
+  <h5>
+    <%= @results.first["state_name"] %> -
+    <% if @results.first["party"] == "D" %>
+      Democrat
+    <% else %>
+      Republican
+    <% end %>
+  </h5>
 
   <%# raise %>
   <% if FileTest.exist?(Rails.root + "app/assets/images/#{@id}.jpg") %>
@@ -23,6 +30,13 @@
       <% end %>
     </ul>
 
-  <h3><%= @display_capitol_words %></h3>
-
+  <% if @phrases.any? %>
+    <h3>Capitol Words</h3>
+    During Congressional hearings, <%= @results.first["title"] %>. <%= @results.first["last_name"] %> has said the words:<br>
+    <ul>
+      <% @phrases.each do |phrase| %></h3>
+        <li><%= phrase["ngram"] %> <%= phrase["count"] %> times</li></font>
+      <% end %>
+    </ul>
+  <% end %>
 </div>
