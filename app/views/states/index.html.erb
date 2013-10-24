@@ -1,8 +1,11 @@
-<h1>States</h1>
+<div class="state_head"><h1>States</h1></div>
 
-<ul>
-<%= link_to('Add state', '/states/new') %>
-</ul>
+<div>
+  <%= form_tag("/states/new", method: :get) do %>
+  <%= submit_tag 'Add state' %>
+  <% end %>
+</div>
+
 
 <div>
   <% @states.each do |state| %>

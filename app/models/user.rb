@@ -17,4 +17,7 @@ class User < ActiveRecord::Base
   validates :email, :presence => true, :uniqueness => true
   validates :password, :password_confirmation, :presence => true
   validates :password, :password_confirmation, :length => { in: 6..20 }
+
+  has_and_belongs_to_many :states
+  has_and_belongs_to_many :senators
 end

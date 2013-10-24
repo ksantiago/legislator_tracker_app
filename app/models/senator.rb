@@ -16,4 +16,5 @@ class Senator < ActiveRecord::Base
   # fixed // fixme: has_many needs underscore
   has_many :politics
   has_many :bills, :through => :politics
+  has_and_belongs_to_many :users
 end

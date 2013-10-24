@@ -9,7 +9,7 @@ class SessionController < ApplicationController
     user = User.where(email: email).first
     if user && user.authenticate(password)
       session[:user_id] = user.id
-      redirect_to(user)
+      redirect_to(states_path)
     else
       flash[:notice] = "Incorrect, please try again"
       redirect_to(login_path)

@@ -18,7 +18,6 @@ class UsersController < ApplicationController
     if @user.nil?
       redirect_to(login_path)
     end
-
   end
 
 end

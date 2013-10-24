@@ -1,12 +1,14 @@
-<nav>
-<a href="/states">STATES</a> |
-</nav>
+<h1>
+  <%= @state.name %>
+</h1>
 
-<h1><%= @state.name %></h1>
 
-<div><button>
-  <%= link_to "Edit State", "/states/#{@state.id}/edit" %></button>
+<div>
+  <%= form_tag("/states/#{@state.id}/edit", method: :get) do %>
+  <%= submit_tag 'Edit state' %>
+  <% end %>
 </div>
+
 
 <div>
   <%= form_tag "/states/#{@state.id}", method: :delete do %>

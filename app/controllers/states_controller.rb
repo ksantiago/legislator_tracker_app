@@ -17,6 +17,7 @@ class StatesController < ApplicationController
   end
 
   def show
+
     id = params[:id]
     @state = State.find(id)
     name = @state.name

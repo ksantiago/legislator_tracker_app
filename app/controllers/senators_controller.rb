@@ -7,7 +7,7 @@ class SenatorsController < ApplicationController
     url = "http://congress.api.sunlightfoundation.com"
     method="/legislators?per_page=all"
 
-    @results = HTTParty.get(url+method+"&apikey=#{ENV['sunlight_key']}")["results"].select { |result| result['title'] == "Sen" }
+    @results = HTTParty.get(url+method+"&apikey=#{ENV['sunlight_key']}")["results"]
 
   end
 
@@ -34,8 +34,12 @@ class SenatorsController < ApplicationController
 
     words_url = "http://capitolwords.org/api/1"
     words = "/phrases.json?entity_type=legislator&entity_value=#{@id}"
-    @phrases = HTTParty.get(url+words+"&apikey=#{ENV['sunlight_key']}")["results"]
+    @phrases = HTTParty.get(words_url+words+"&apikey=#{ENV['sunlight_key']}")
 
+
+    if @phrases.any?
+      @display_capitol_words = "Capitol Words"
+    end
   end
 
   def edit

@@ -9,12 +9,21 @@
   <%= csrf_meta_tags %>
 </head>
 
-<nav>
-  <a href="/states">STATES</a> | <a href="/senators">SENATE</a>
-</nav> | <a href="/representatives">HOUSE</a> | <a href="/bills">BILLS</a> | <a href="/">HOME</a>
+<body>
 
-<%= yield %>
+  <div class="nav">
+    <div class="left">
+      <ul>
+        <li><a href="/states">STATES</a></li>
+        <li><a href="/senators">LEGISLATORS</a></li>
+        <li><a href="/users/<%= session['user_id'] %>">DASHBOARD</a></li>
+      </ul>
+    </div>
+    <div class="logout"><a href="/logout">LOGOUT</a></div>
 
+  </div>
+
+  <%= yield %>
 
 </body>
 </html>

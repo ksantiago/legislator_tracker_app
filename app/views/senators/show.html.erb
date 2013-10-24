@@ -1,27 +1,28 @@
+<div class="legis_container">
 
+  <h2><%= @results.first["title"] %>. <%= @results.first["first_name"] %> <%= @results.first["last_name"] %></h2>
+  <h5><%= @results.first["state_name"] %></h5>
 
-<h2><%= @results.first["title"] %>. <%= @results.first["first_name"] %> <%= @results.first["last_name"] %></h2>
-<h5><%= @results.first["state_name"] %></h5>
+  <%# raise %>
+  <% if FileTest.exist?(Rails.root + "app/assets/images/#{@id}.jpg") %>
+    <% image_check = image_tag("#{@id}.jpg") %>
+    <%= image_tag("#{@id}.jpg") %>
+  <% end %>
 
-<%# raise %>
-<% if FileTest.exist?(Rails.root + "app/assets/images/#{@id}.jpg") %>
-  <% image_check = image_tag("#{@id}.jpg") %>
-  <%= image_tag("#{@id}.jpg") %>
-<% end %>
+  <h3>Contact Info</h3>
 
-<h3>Contact Info</h3>
+    Twitter: <%= @results.first["twitter_id"] %><br>
+    Website: <%= @results.first["website"] %><br>
+    YouTube: <%= @results.first["youtube_id"] %><br>
+    Facebook: <%= @results.first["facebook_id"] %><br>
 
-  Twitter: <%= @results.first["twitter_id"] %><br>
-  Website: <%= @results.first["website"] %><br>
-  YouTube: <%= @results.first["youtube_id"] %><br>
-  Facebook: <%= @results.first["facebook_id"] %><br>
+  <h3>Committees</h3>
+    <ul>
+      <% @committees.each do |committee| %>
+        <li><%= committee["name"] %></li>
+      <% end %>
+    </ul>
 
-<h3>Committees</h3>
-  <ul>
-    <% @committees.each do |committee| %>
-      <li><%= committee["name"] %></li>
-    <% end %>
-  </ul>
+  <h3><%= @display_capitol_words %></h3>
 
-<h3>Capitol Words</h3>
-  <%= @phrases %>
+</div>
