@@ -1,11 +1,12 @@
 body {
   line_height: 1.62;
   font-family: Helvetica;
+  color: #262626;
 }
 
 body h1 {
-  color: #00000;
-  font-family: georgia;
+  font-family: Georgia;
+  color #262626
 }
 
 li {
@@ -17,7 +18,7 @@ li {
   margin: 0 auto;
   font-size: 20px;
   line-height: 1.62;
-  font-family: helvetica;
+
 }
 
 .title {
@@ -35,6 +36,8 @@ li {
   width: 960px;
   margin-top: 100px;
   text-align: center;
+  font-size: 60px;
+  color: #262626;
 }
 
 .home_buttons {
@@ -115,6 +118,7 @@ li {
 
 .field {
   margin-top: 20px;
+  color: #262626;
 }
 
 .actions {

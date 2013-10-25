@@ -1,7 +1,19 @@
-<h1>Add state</h1>
+<div class="container">
+  <div class="title">
+    <h1>Track legislators by state</h1>
+  </div>
 
-<%= form_for(@state) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.submit "Add" %>
-<% end %>
+
+  <%= form_for(@state) do |f| %>
+
+    <div class="field">
+      <%= f.label :state %><br>
+      <%= f.text_field :name %><br>
+    </div>
+    <div class="field"><br>
+      <%= f.submit 'Add a state', class: "btn btn-large btn-primary" %><br>
+    </div>
+  <% end %>
+
+</div>
+
