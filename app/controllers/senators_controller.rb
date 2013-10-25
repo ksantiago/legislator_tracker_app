@@ -36,8 +36,6 @@ class SenatorsController < ApplicationController
     words = "/phrases.json?entity_type=legislator&entity_value=#{@id}"
     @phrases = HTTParty.get(words_url+words+"&apikey=#{ENV['sunlight_key']}")
 
-
-
   end
 
   def edit

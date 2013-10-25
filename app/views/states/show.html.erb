@@ -1,29 +1,25 @@
-<h1>
-  <%= @state.name %>
-</h1>
+<div class="container">
+
+  <div class="title"><h1><%= @state.name %></h1></div>
 
 
-<div>
-  <%= form_tag("/states/#{@state.id}/edit", method: :get) do %>
-  <%= submit_tag 'Edit state' %>
-  <% end %>
+  <div class="edit_button">
+    <%= form_tag("/states/#{@state.id}/edit", method: :get) do %>
+    <%= submit_tag 'Edit state', class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+
+
+  <h3>U.S. legislators for the state of <%= @state.name %></h3>
+    <div class="api_list">
+      <% @results.each do |result| %>
+        <ul>
+          <li>
+            <a href="/senators/<%= result['bioguide_id'] %>">
+            <%= result["title"] %>. <%= result["first_name"] %> <%= result["last_name"] %> (<%= result["party"] %>)
+            </a>
+          </li>
+        </ul>
+      <% end %>
+    </div>
 </div>
-
-
-<div>
-  <%= form_tag "/states/#{@state.id}", method: :delete do %>
-  <%= submit_tag 'Delete state' %>
-  <% end %>
-</div>
-
-
-<h3>U.S. legislators for the state of <%= @state.name %></h3>
-<ul>
-  <% @results.each do |result| %>
-  <li>
-    <a href="/senators/<%= result['bioguide_id'] %>">
-    <%= result["title"] %>. <%= result["first_name"] %> <%= result["last_name"] %> (<%= result["party"] %>)
-    </a>
-  </li>
-  <% end %>
-</ul>

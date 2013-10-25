@@ -1,42 +1,61 @@
-<div class="legis_container">
+<div class="container">
 
-  <h2><%= @results.first["title"] %>. <%= @results.first["first_name"] %> <%= @results.first["last_name"] %></h2>
-  <h5>
-    <%= @results.first["state_name"] %> -
-    <% if @results.first["party"] == "D" %>
-      Democrat
-    <% else %>
-      Republican
-    <% end %>
-  </h5>
+  <div class="title">
+    <h1>
+      <%= @results.first["title"] %>. <%= @results.first["first_name"] %> <%= @results.first["last_name"] %>
+    </h1>
+  </div>
 
-  <%# raise %>
+  <div class="legis_state">
+    <h3>
+      <%= @results.first["state_name"] %> -
+      <% if @results.first["party"] == "D" %>
+        Democrat
+      <% else %>
+        Republican
+      <% end %>
+    </h3>
+  </div>
+
+  <div class="photo">
   <% if FileTest.exist?(Rails.root + "app/assets/images/#{@id}.jpg") %>
     <% image_check = image_tag("#{@id}.jpg") %>
     <%= image_tag("#{@id}.jpg") %>
   <% end %>
+  </div>
 
   <h3>Contact Info</h3>
-
+  <div class="contact">
     Twitter: <%= @results.first["twitter_id"] %><br>
     Website: <%= @results.first["website"] %><br>
     YouTube: <%= @results.first["youtube_id"] %><br>
     Facebook: <%= @results.first["facebook_id"] %><br>
+  </div>
 
   <h3>Committees</h3>
+  <div class="committees">
     <ul>
       <% @committees.each do |committee| %>
         <li><%= committee["name"] %></li>
       <% end %>
     </ul>
+  </div>
 
   <% if @phrases.any? %>
     <h3>Capitol Words</h3>
     During Congressional hearings, <%= @results.first["title"] %>. <%= @results.first["last_name"] %> has said the words:<br>
     <ul>
-      <% @phrases.each do |phrase| %></h3>
-        <li><%= phrase["ngram"] %> <%= phrase["count"] %> times</li></font>
+
+      <% ordered = @phrases.sort_by { |p| p["count"] }.reverse %>
+      <% top_10 = ordered.slice(0, 10) %>
+      <% max = top_10[0]["count"] %>
+      <% min = top_10.last["count"] %>
+
+      <% top_10.map do |p| %>
+      <% @font = (p["count"] * 92)/(max - min) %>
+      <li style="font-size: <%= @font %>px;"><%= p["ngram"] %> <%= p["count"] %> times</li>
       <% end %>
     </ul>
   <% end %>
+
 </div>

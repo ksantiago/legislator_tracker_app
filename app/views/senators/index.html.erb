@@ -2,16 +2,13 @@
   <div class="title">
     <h1>U.S. Legislators</h1>
   </div>
-  <div class="list">
+  <div class="api_list">
     <ul>
       <% @results.each do |result| %>
-      <a href="/senators/<%= result["bioguide_id"] %>">
         <li>
-          <%= result["title"] %>. <%= result["first_name"] %> <%= result["last_name"] %>, <%= result["state_name"] %><br>
+          <a href="/senators/<%= result["bioguide_id"] %>"><%= result["title"] %>. <%= result["first_name"] %> <%= result["last_name"] %>, <%= result["state_name"] %></a>
         </li>
-      </a>
       <% end %>
-
     </ul>
   </div>
 </div>

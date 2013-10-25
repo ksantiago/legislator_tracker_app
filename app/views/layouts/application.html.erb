@@ -13,14 +13,23 @@
 
   <div class="nav">
     <div class="left">
+
       <ul>
+        <li><a href="/">poliTracker</a></li>
         <li><a href="/states">STATES</a></li>
         <li><a href="/senators">LEGISLATORS</a></li>
-        <li><a href="/users/<%= session['user_id'] %>">DASHBOARD</a></li>
       </ul>
+
     </div>
     <% if session['user_id'] %>
-      <div class="logout"><a href="/logout">LOGOUT</a></div>
+      <div class="right"><a href="/logout">LOGOUT</a></div>
+    <% else %>
+      <div class="right">
+        <ul>
+          <li><a href="/login">LOGIN</a></li>
+          <li><a href="/signup">SIGNUP</a></li>
+        </ul>
+      </div>
     <% end %>
 
   </div>

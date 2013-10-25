@@ -2,15 +2,17 @@
 
   <div class="title"><h1>Track legislators by state</h1></div>
 
-  <div>
+  <div class="add_button">
     <%= form_tag("/states/new", method: :get) do %>
-    <%= submit_tag 'Add' %>
+    <%= submit_tag 'Add state to track', class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 
-  <div>
+  <div class="api_list">
     <% @states.each do |state| %>
-      <div><a href="/states/<%= state.id %>"><%= state.name %></a></div>
+      <ul>
+        <li><a href="/states/<%= state.id %>"><%= state.name %></a></li>
+      </ul>
     <% end %>
   </div>
 </div>
