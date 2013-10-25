@@ -26,10 +26,10 @@
 
   <h3>Contact Info</h3>
   <div class="contact">
-    Twitter: <%= @results.first["twitter_id"] %><br>
-    Website: <%= @results.first["website"] %><br>
-    YouTube: <%= @results.first["youtube_id"] %><br>
-    Facebook: <%= @results.first["facebook_id"] %><br>
+    <a href="https://twitter.com/<%= @results.first["twitter_id"] %>">Twitter</a><br>
+    <a href="<%= @results.first["website"] %>">Website</a><br>
+    <a href="http://youtube.com/<%= @results.first["youtube_id"] %>">YouTube</a><br>
+    <a href="http://facebook.com/<%= @results.first["facebook_id"] %>">Facebook</a><br>
     Phone: <%= @results.first["phone"] %><br>
 
   </div>
