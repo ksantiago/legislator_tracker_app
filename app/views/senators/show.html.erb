@@ -17,6 +17,7 @@
     </h3>
   </div>
 
+ <!-- checks for existence of photo in assets/images folder. if there isn't, it does not attempt to render it -->
   <div class="photo">
   <% if FileTest.exist?(Rails.root + "app/assets/images/#{@id}.jpg") %>
     <% image_check = image_tag("#{@id}.jpg") %>
@@ -24,6 +25,7 @@
   <% end %>
   </div>
 
+  <!-- wrapped all contact info with direct links to make app easier to use -->
   <h3>Contact Info</h3>
   <div class="contact">
     <a href="https://twitter.com/<%= @results.first["twitter_id"] %>">Twitter</a><br>
@@ -31,7 +33,6 @@
     <a href="http://youtube.com/<%= @results.first["youtube_id"] %>">YouTube</a><br>
     <a href="http://facebook.com/<%= @results.first["facebook_id"] %>">Facebook</a><br>
     Phone: <%= @results.first["phone"] %><br>
-
   </div>
 
   <h3>Committees</h3>
@@ -43,17 +44,24 @@
     </ul>
   </div>
 
+  <!-- checks to see if there are any phrases present, otherwise do not render -->
   <% if @phrases.any? %>
     <h3>Capitol Words</h3>
     During Congressional hearings, <%= @results.first["title"] %>. <%= @results.first["last_name"] %> has said the words:<br>
-    <ul>
 
+    <!-- takes array of hashes of @phrases and sorts them by the value pf["count"] number of times a word is used, then reverses it so that most used is at the top of the list. -->
+    <ul>
       <% ordered = @phrases.sort_by { |p| p["count"] }.reverse %>
+      <!-- takes first 10 of array only, starting at index=0 -->
       <% top_10 = ordered.slice(0, 10) %>
+      <!-- finds the max number -->
       <% max = top_10[0]["count"] %>
+      <!-- finds the min number -->
       <% min = top_10.last["count"] %>
 
+      <!-- iterates through the top_10 items and for each finds a corresponding font size -->
       <% top_10.map do |p| %>
+      <!-- font size - uses the top 10 most used words and their count and giving each a corresponding font size given usage so that the most used is 100px and 10th word gets 8px -->
       <% @font = (p["count"] * 92)/(max - min) %>
       <li style="font-size: <%= @font %>px;"><%= p["ngram"] %> <%= p["count"] %> times</li>
       <% end %>

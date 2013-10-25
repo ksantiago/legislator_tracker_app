@@ -6,7 +6,6 @@ class SenatorsController < ApplicationController
 
     url = "http://congress.api.sunlightfoundation.com"
     method="/legislators?per_page=all"
-
     @results = HTTParty.get(url+method+"&apikey=#{ENV['sunlight_key']}")["results"]
 
   end
@@ -25,17 +24,19 @@ class SenatorsController < ApplicationController
 
   def show
     @id = params[:id]
+    # this is to populate info for a particular legislator, found through bioguide_id
     url = "http://congress.api.sunlightfoundation.com"
     method="/legislators?per_page=all"
     @results = HTTParty.get(url+method+"&apikey=#{ENV['sunlight_key']}")["results"].select { |result| result['bioguide_id'] == "#{@id}" }
 
+    # finds all the committees for a given legislator
     committee="/committees?member_ids=#{@id}"
     @committees = HTTParty.get(url+committee+"&apikey=#{ENV['sunlight_key']}")["results"]
 
+    # finds most used words for each legislator
     words_url = "http://capitolwords.org/api/1"
     words = "/phrases.json?entity_type=legislator&entity_value=#{@id}"
     @phrases = HTTParty.get(words_url+words+"&apikey=#{ENV['sunlight_key']}")
-
   end
 
   def edit

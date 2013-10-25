@@ -16,6 +16,7 @@ class BillsController < ApplicationController
   end
 
   def show
+    # uses Congress API to request all active members of Congress
     url = "http://congress.api.sunlightfoundation.com"
     method="/bills?history.active=true&order=last_action_at"
     @results = HTTParty.get(url+method+"&apikey=#{ENV['sunlight_key']}")["results"]

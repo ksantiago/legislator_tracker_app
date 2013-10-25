@@ -1,3 +1,21 @@
+This is the trackCongress app, which allows you to track contact information for each Congressional member, but also what committees they contribute to, and their most used words while in session.
+
+This uses two APIs from the Sunlight Foundation: Congress API and CapitolWords API.
+
+Some really cool code can be found in the /views/senators/show.html.erb file that uses a formula to display words by the number of times they were used by the given legislator.
+
+Oddities: I am using /senators path when it should be /legislators
+I originally created that path because I created models for senators and representatives then decided to ease the process by using the APIs and by combining the two.
+
+Some additions I'd like to implement: Share on social media functionality
+- Pull in latest tweets?
+- Pull in latest video if they have a YouTube account
+- Add emails to database
+- Fix routes
+- Need to clear up hurdles with user authentication as well as model relationships
+
+======
+
 == Welcome to Rails
 
 Rails is a web-application framework that includes everything needed to create
