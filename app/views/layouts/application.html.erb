@@ -21,14 +21,14 @@
       </ul>
 
     </div>
-    <% if session['user_id'] %>
-      <div class="right"><a href="/logout">LOGOUT</a></div>
-    <% else %>
-      <div class="right">
-        <ul>
-          <li><a href="/login">LOGIN</a></li>
-          <li><a href="/signup">SIGNUP</a></li>
-        </ul>
+    <div class="right">
+      <ul>
+        <% if session[:user_id] %>
+        <li><%= link_to "LOGOUT", logout_path %></li>
+      <% else %>
+        <li><%= link_to "SIGNUP", signup_path %></li>
+        <li><%= link_to "LOGIN", login_path %></li>
+      </ul>
       </div>
     <% end %>
 

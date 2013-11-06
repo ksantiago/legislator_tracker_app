@@ -2,15 +2,16 @@ CongressTracker::Application.routes.draw do
 
   # fixed // add root to: somethin
   root :to => "static_pages#home"
-  get '/signup' => "users#new"
-  get '/login' => "session#new"
+  get '/signup' => "users#new", as: 'signup'
+  get '/login' => "session#new", as: 'login'
   post '/login' => "session#create"
-  get '/logout' => "session#destroy"
+  get '/logout' => "session#destroy", as: 'logout'
 
   resources :users
   resources :states
   resources :senators
   resources :bills
+  resources :session
 
 end
 #== Route Map
