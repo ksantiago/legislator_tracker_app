@@ -168,3 +168,7 @@ li {
   float: right;
   margin-right: 150px
 }
+
+.api_list a {
+  color: black;
+}
