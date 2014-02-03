@@ -20,13 +20,12 @@ class StatesController < ApplicationController
 
   def show
 
-    id = params[:id]
-    @state = State.find(id)
+    @state = State.find(params[:id])
     name = @state.name
 
     # finds all legislator for each state
     url = "http://congress.api.sunlightfoundation.com"
-    method="/legislators?per_page=all"
+    method = "/legislators?per_page=all"
     @results = HTTParty.get(url+method+"&apikey=#{ENV['sunlight_key']}")["results"].select { |result| result['state_name'] == "#{@state.name}"}
 
   end
