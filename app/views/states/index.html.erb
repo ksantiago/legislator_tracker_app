@@ -10,7 +10,7 @@
 
 
 <% if @user.states %>
-  <div class="api_list">
+  <div class="states_list">
     <% @user.states.each do |state| %>
       <ul>
         <li><a href="/states/<%= state.id %>"><%= state.name %></a></li>
