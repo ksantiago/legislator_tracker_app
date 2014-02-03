@@ -14,7 +14,7 @@ class StatesController < ApplicationController
     s = State.create(state)
     s.user_id = @user.id
     s.save
-    binding.pry
+
     redirect_to('/states')
   end
 
