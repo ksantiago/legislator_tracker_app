@@ -9,12 +9,12 @@ class StatesController < ApplicationController
   end
 
   def create
-
     state = params[:state] #=> {:state_name => "new jersey"}
     # state1 = State.create(:state_name => "new jersey")
-    State.create(state, :user_id => @user.id)
+    s = State.create(state)
+    s.user_id = @user.id
+    s.save
     binding.pry
-
     redirect_to('/states')
   end
 
