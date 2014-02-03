@@ -8,11 +8,15 @@
     <% end %>
   </div>
 
+
+<% if @user.states %>
   <div class="api_list">
-    <% @states.each do |state| %>
-      <ul>
-        <li><a href="/states/<%= state.id %>"><%= state.name %></a></li>
-      </ul>
+    <% @user.states.each do |state| %>
+
+    <%= state.name %>
+
     <% end %>
   </div>
+<% end %>
+
 </div>

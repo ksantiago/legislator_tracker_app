@@ -9,8 +9,8 @@
 #
 
 class State < ActiveRecord::Base
-  attr_accessible :name, :senator_id
+  attr_accessible :name, :senator_id, :user_id
 
   has_many :senators
-  has_and_belongs_to_many :users
+  belongs_to :user
 end

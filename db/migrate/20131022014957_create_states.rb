@@ -2,6 +2,7 @@ class CreateStates < ActiveRecord::Migration
   def up
     create_table :states do |t|
       t.string :name
+      t.integer :user_id
 
       t.timestamps
     end
@@ -10,6 +11,7 @@ class CreateStates < ActiveRecord::Migration
   def down
     drop_table :states do |t|
       t.string :name
+      t.integer :user_id
 
       t.timestamps
     end
